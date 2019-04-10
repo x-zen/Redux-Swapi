@@ -12,10 +12,10 @@ export const getJedi = () => dispatch => {
   dispatch({ type: FETCH_JEDI_START });
   axios
     .get('https://swapi.co/api/people/')
-    .then(res =>
-      dispatch({ type: FETCH_JEDI_SUCCESS, payload: res.data.results })
+    .then(({ data }) =>
+      dispatch({ type: FETCH_JEDI_SUCCESS, payload: data.results })
     )
     .catch(err =>
-      dispatch({ type: FETCH_JEDI_START, payload: err })
+      dispatch({ type: FETCH_JEDI_FAIL, payload: err })
     );
 };

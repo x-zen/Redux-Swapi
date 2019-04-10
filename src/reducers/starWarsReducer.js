@@ -8,7 +8,7 @@ const initialState = {
   characters: [],
   // Array characters, Boolean fetching, null error.
   isFetchingJedi: false,
-  err: ''
+  err: null
 };
 
 export const charsReducer = (state = initialState, action) => {
@@ -20,18 +20,17 @@ export const charsReducer = (state = initialState, action) => {
       return {
         ...state,
         isFetchingJedi: true,
-        err: ''
       }
     case FETCH_JEDI_SUCCESS:
       return {
         ...state,
-        characters: action.payload,
-        err: ''
+        characters: [...action.payload, ...state.characters],
+        isFetchingJedi: false
       }
     case FETCH_JEDI_FAIL:
       return {
         ...state,
-        err: action.payload    
+        err: action.payload
       }
     default:
       return state;
