@@ -11,7 +11,7 @@ export const FETCH_JEDI_FAIL = 'FETCH_JEDI_FAIL';
 export const getJedi = () => dispatch => {
   dispatch({ type: FETCH_JEDI_START });
   axios
-    .get('')
+    .get('https://swapi.co/api/people/')
     .then(res =>
       dispatch({ type: FETCH_JEDI_SUCCESS, payload: res.data.results })
     )
